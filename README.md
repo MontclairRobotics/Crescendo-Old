@@ -1,3 +1,3 @@
 # Crescendo2024
 ---
-### The story of Icarus is not to avoid the sun, but to make better wings.
+### The lesson to be gained from the story of Icarus is not to avoid the sun, but to make better wings!
