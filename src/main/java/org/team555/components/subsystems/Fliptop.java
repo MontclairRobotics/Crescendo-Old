@@ -4,8 +4,8 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import org.team555.constants.*;
 
 public class Fliptop {
-    //TODO: Actual motor ID
-    private CANSparkMax motor = new CANSparkMax(Constants.FLIPTOP_MOTOR_ID, MotorType.kBrushless);
+    
+    private CANSparkMax motor = new CANSparkMax(Ports.FLIPTOP_MOTOR_PORT, MotorType.kBrushless);
 
     public Fliptop() {
         motor.setInverted(false);
@@ -15,10 +15,8 @@ public class Fliptop {
         motor.set(Constants.FLIPTOP_SPEED);
     }
     public void backward() {
-        motor.set(-1*Constants.FLIPTOP_SPEED);
+        motor.set(-Constants.FLIPTOP_SPEED);
     }
-    public void off() {
-        motor.set(0);
-    }
+    
     
 }
