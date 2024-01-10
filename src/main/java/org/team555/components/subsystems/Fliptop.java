@@ -5,8 +5,8 @@ import org.team555.constants.*;
 
 public class Fliptop {
     //TODO: Actual motor ID
-    public CANSparkMax motor = new CANSparkMax(Constants.FLIPTOP_MOTOR_ID, MotorType.kBrushless);
-    
+    private CANSparkMax motor = new CANSparkMax(Constants.FLIPTOP_MOTOR_ID, MotorType.kBrushless);
+
     public Fliptop() {
         motor.setInverted(false);
     }
