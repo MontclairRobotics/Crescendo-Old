@@ -25,11 +25,17 @@ public class Crescendo extends RobotContainer
         ControlScheme.DRIVER_CONTROLLER_TYPE, 
         ControlScheme.DRIVER_CONTROLLER_PORT
     );
-
+    
     @Override
     public void initialize() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+        operatorController.getAxis(Axis.LEFT_TRIGGER)
+            .whenGreaterThan(0.5).onTrue(Commands555.eat())
+            .onFalse(Commands555.stop());
+        operatorController.getAxis(Axis.RIGHT_TRIGGER)
+            .whenGreaterThan(0.5).onTrue(Commands555.barf())
+            .onFalse(Commands555.stop());
     }
     
 }
