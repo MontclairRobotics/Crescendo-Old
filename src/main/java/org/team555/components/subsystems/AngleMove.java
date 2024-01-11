@@ -8,7 +8,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class AngleMove extends ManagerSubsystemBase {
     
-    private CANSparkMax motor = new CANSparkMax(Ports.ANGLE_MOTOR_PORT, MotorType.kBrushless);
+    private final CANSparkMax motor = new CANSparkMax(Ports.ANGLE_MOTOR_PORT, MotorType.kBrushless);
 
     public AngleMove() {
         motor.setInverted(false);
