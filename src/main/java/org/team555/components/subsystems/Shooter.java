@@ -9,8 +9,8 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class Shooter extends ManagerSubsystemBase {
 
-    public CANSparkMax motor1 = new CANSparkMax(Ports.SHOOTER_MOTOR_1_PORT, MotorType.kBrushless);
-    public CANSparkMax motor2 = new CANSparkMax(Ports.SHOOTER_MOTOR_2_PORT, MotorType.kBrushless);
+    private final CANSparkMax motor1 = new CANSparkMax(Ports.SHOOTER_MOTOR_1_PORT, MotorType.kBrushless);
+    private final CANSparkMax motor2 = new CANSparkMax(Ports.SHOOTER_MOTOR_2_PORT, MotorType.kBrushless);
     
     public Shooter() {
         // Possibility of adding spin (spinning one motor faster than the other so the note is more stable, like a frisbee)
