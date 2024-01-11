@@ -2,6 +2,7 @@ package org.team555.util.frc;
 
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PS5Controller;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -139,6 +140,30 @@ public abstract class GameController
     }
 
     /**
+     * Return an axis as a ps5 axis.
+     * @param axisType the axis to convert
+     * @return the axis as a ps5 axis
+     */
+    public static PS5Controller.Axis toPS5(Axis axisType) {
+
+        switch(axisType) {
+            case LEFT_X:
+                return PS5Controller.Axis.kLeftX;
+            case RIGHT_X:
+                return PS5Controller.Axis.kRightX;
+            case LEFT_Y:
+                return PS5Controller.Axis.kLeftY;
+            case RIGHT_Y:
+                return PS5Controller.Axis.kRightY;
+            case LEFT_TRIGGER:
+                return PS5Controller.Axis.kL2;
+            case RIGHT_TRIGGER:
+                return PS5Controller.Axis.kR2;
+        }
+        return null;
+    }
+
+    /**
      * Return a button as an xbox axis.
      * @param axisType the button to convert
      * @return the button as an xbox axis
@@ -207,6 +232,39 @@ public abstract class GameController
     }
 
     /**
+     * Return a button as a ps5 axis.
+     * @param axisType the button to convert
+     * @return the button as a ps5 axis
+     */
+    public static PS5Controller.Button toPS5(Button buttonType) {
+        switch(buttonType)
+        {
+            case A_CROSS:
+                return PS5Controller.Button.kCross;
+            case B_CIRCLE:
+                return PS5Controller.Button.kCircle;
+            case X_SQUARE:
+                return PS5Controller.Button.kSquare;
+            case Y_TRIANGLE:
+                return PS5Controller.Button.kTriangle;
+
+            case START_TOUCHPAD:
+                return PS5Controller.Button.kTouchpad;
+            
+            case LEFT_BUMPER:
+                return PS5Controller.Button.kL1;
+            case RIGHT_BUMPER:
+                return PS5Controller.Button.kR1;
+
+            case LEFT_STICK:
+                return PS5Controller.Button.kL3;
+            case RIGHT_STICK:
+                return PS5Controller.Button.kR3;
+        }
+        return null;
+    }
+
+    /**
      * Represents a type of game controller supported by this class.
      * Can either be XBOX or PS4.
      */
@@ -214,6 +272,7 @@ public abstract class GameController
     {
         XBOX,
         PS4,
+        PS5
     }
     
     /**
@@ -393,6 +452,55 @@ public abstract class GameController
         };
     }
 
+    /**
+     * Creates a new instance of {@link GameController} which wraps a
+     * ps5 controller.
+     * @param channel the channel on which the controller exists
+     * @return a new instance which wraps a ps5 controller
+     */
+    public static GameController ps5(int channel)
+    {
+        return new GameController()
+        {
+            private PS5Controller innerCont = new PS5Controller(channel);
+
+            @Override
+            public boolean getDPadRaw(DPad type)
+            {
+                return DPad.get(type, innerCont.getPOV());
+            }
+
+            @Override
+            public boolean getButtonValue(Button type) {
+                return innerCont.getRawButton(toPS5(type).value);
+            }
+            
+            @Override
+            public boolean getButtonPressed(Button type) {
+                return innerCont.getRawButtonPressed(toPS5(type).value);
+            }
+
+            @Override
+            public boolean getButtonReleased(Button type) {
+                return innerCont.getRawButtonReleased(toPS5(type).value);
+            }
+
+            @Override
+            public double getAxisValue(Axis type) {
+                return innerCont.getRawAxis(toPS5(type).value);
+            }
+
+            @Override
+            public Type type() {
+                return Type.PS5;
+            }
+            
+            @Override
+            public double getPOVValue() {
+                return innerCont.getPOV();
+            }
+        };
+    }
     /**
      * Creates a new instance of {@link GameController} which wraps the specified
      * controller type.

@@ -4,10 +4,21 @@
 
 package org.team555;
 
+import org.team555.constants.ControlScheme;
+import org.team555.util.frc.GameController;
 import org.team555.util.frc.commandrobot.RobotContainer;
 
 public class Crescendo extends RobotContainer 
 {
+    
+    public static final GameController operatorController = GameController.from(
+        ControlScheme.OPERATOR_CONTROLLER_TYPE,
+        ControlScheme.OPERATOR_CONTROLLER_PORT
+    );
+    public static final GameController driverController = GameController.from(
+        ControlScheme.DRIVER_CONTROLLER_TYPE, 
+        ControlScheme.DRIVER_CONTROLLER_PORT
+    );
 
     @Override
     public void initialize() {
