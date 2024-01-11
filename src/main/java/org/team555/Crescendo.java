@@ -7,7 +7,12 @@ package org.team555;
 import org.team555.components.subsystems.*;
 import org.team555.constants.ControlScheme;
 import org.team555.util.frc.GameController;
+import org.team555.util.frc.GameController.*;
 import org.team555.util.frc.commandrobot.RobotContainer;
+import org.team555.components.managers.GyroscopeNavX;
+import org.team555.components.subsystems.Drivetrain;
+import org.team555.constants.ControlScheme;
+import org.team555.util.frc.GameController;
 
 public class Crescendo extends RobotContainer 
 {
@@ -16,6 +21,10 @@ public class Crescendo extends RobotContainer
     public static Fliptop fliptop = new Fliptop();
     public static Shooter shooter = new Shooter();
     public static Sprocket sprocket = new Sprocket();
+
+
+    public static final Drivetrain drivetrain = new Drivetrain();
+    public static final GyroscopeNavX gyroscope = new GyroscopeNavX();
 
     public static final GameController operatorController = GameController.from(
         ControlScheme.OPERATOR_CONTROLLER_TYPE,
@@ -28,19 +37,34 @@ public class Crescendo extends RobotContainer
     
     @Override
     public void initialize() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
-<<<<<<< Updated upstream
-        operatorController.getAxis(Axis.LEFT_TRIGGER)
-            .whenGreaterThan(0.5).onTrue(Commands555.eat())
-            .onFalse(Commands555.stop());
+
+        drivetrain.setDefaultCommand(); // TODO why is there no default method supplied for this function? - rechs
+        // SHOOTER BINDINGS
+        operatorController.getButton(Button.A_CROSS).onTrue(Commands555.shoot());
+        operatorController.getButton(Button.X_SQUARE).onTrue(Commands555.stopShooter());
+
+        // INTAKE BINDINGS
         operatorController.getAxis(Axis.RIGHT_TRIGGER)
-            .whenGreaterThan(0.5).onTrue(Commands555.barf())
-            .onFalse(Commands555.stop());
-=======
-        operatorController.getDPad(DPad.UP).onTrue(commands555.goUp()).onFalse(commands555.stop());
-        operatorController.getDPad(DPad.DOWN).onTrue(commands555.goDown()).onFalse(commands555.stop());
->>>>>>> Stashed changes
-    }
+        .whenGreaterThan(0.5).onTrue(Commands555.barf())
+        .onFalse(Commands555.stopIntake());
+
+        operatorController.getAxis(Axis.LEFT_TRIGGER)
+        .whenGreaterThan(0.5).onTrue(Commands555.eat())
+        .onFalse(Commands555.stopIntake());
+
+        // SPROCKET BINDINGS
+        operatorController.getDPad(DPad.UP).onTrue(Commands555.goUp()).onFalse(Commands555.stopSprocket());
+        operatorController.getDPad(DPad.DOWN).onTrue(Commands555.goDown()).onFalse(Commands555.stopSprocket());
+
+        // FLIPTOP BINDINGS
+        operatorController.getButton(Button.Y_TRIANGLE).onTrue(Commands555.goDown());
+        operatorController.getButton(Button.B_CIRCLE).onTrue(Commands555.goUp());
+
+
+        
+    }   
+
+
+
     
 }

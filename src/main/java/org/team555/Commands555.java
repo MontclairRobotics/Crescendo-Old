@@ -21,11 +21,11 @@ public class Commands555
 
     // FLIPTOP COMMANDS
 
-    public Command foward() {
+    public static Command foward() {
         return Commands.runOnce(Crescendo.fliptop::forward, Crescendo.fliptop).withName("fliptop forward");
     }
 
-    public Command backward() {
+    public static Command backward() {
         return Commands.runOnce(Crescendo.fliptop::backward, Crescendo.fliptop).withName("fliptop backward");
     }
 
@@ -37,18 +37,19 @@ public class Commands555
     public static Command goDown() {
         return Commands.runOnce(Crescendo.sprocket::goDown).withName("sprocket down");
     }
-    public static Command stopAngleMove() {
+    public static Command stopSprocket() {
         return Commands.runOnce(Crescendo.sprocket::stop).withName("sprocket stop");
     }
+    
     
 
     // SHOOTER COMMANDS
 
-    public Command shoot() {
+    public static Command shoot() {
         return Commands.runOnce(Crescendo.shooter::shoot, Crescendo.shooter).withName("shoot");
     }
     
-    public Command stopShooter() {
+    public static Command stopShooter() {
         return Commands.runOnce(Crescendo.shooter::stop, Crescendo.shooter).withName("stop");
     }
 }
