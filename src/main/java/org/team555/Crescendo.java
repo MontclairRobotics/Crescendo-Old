@@ -38,7 +38,7 @@ public class Crescendo extends RobotContainer
     @Override
     public void initialize() {
 
-        drivetrain.setDefaultCommand(); // TODO why is there no default method supplied? - rechs
+        drivetrain.setDefaultCommand(); // TODO why is there no default method supplied for this function? - rechs
         // SHOOTER BINDINGS
         operatorController.getButton(Button.A_CROSS).onTrue(Commands555.shoot());
         operatorController.getButton(Button.X_SQUARE).onTrue(Commands555.stopShooter());
