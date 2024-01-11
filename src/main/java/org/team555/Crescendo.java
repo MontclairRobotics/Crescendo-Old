@@ -30,12 +30,17 @@ public class Crescendo extends RobotContainer
     public void initialize() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+<<<<<<< Updated upstream
         operatorController.getAxis(Axis.LEFT_TRIGGER)
             .whenGreaterThan(0.5).onTrue(Commands555.eat())
             .onFalse(Commands555.stop());
         operatorController.getAxis(Axis.RIGHT_TRIGGER)
             .whenGreaterThan(0.5).onTrue(Commands555.barf())
             .onFalse(Commands555.stop());
+=======
+        operatorController.getDPad(DPad.UP).onTrue(commands555.goUp()).onFalse(commands555.stop());
+        operatorController.getDPad(DPad.DOWN).onTrue(commands555.goDown()).onFalse(commands555.stop());
+>>>>>>> Stashed changes
     }
     
 }

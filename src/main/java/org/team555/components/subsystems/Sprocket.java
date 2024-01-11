@@ -6,11 +6,11 @@ import org.team555.constants.Constants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-public class Sprocket extends ManagerSubsystemBase {
+public class AngleMove extends ManagerSubsystemBase {
     
     private final CANSparkMax motor = new CANSparkMax(Ports.ANGLE_MOTOR_PORT, MotorType.kBrushless);
 
-    public Sprocket() {
+    public AngleMove() {
         motor.setInverted(false);
     }
     
