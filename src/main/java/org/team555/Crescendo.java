@@ -4,13 +4,19 @@
 
 package org.team555;
 
+import org.team555.components.subsystems.*;
 import org.team555.constants.ControlScheme;
 import org.team555.util.frc.GameController;
 import org.team555.util.frc.commandrobot.RobotContainer;
 
 public class Crescendo extends RobotContainer 
 {
-    
+    // SUBSYSTEMS
+    public static Intake mouth = new Intake();
+    public static Fliptop fliptop = new Fliptop();
+    public static Shooter shooter = new Shooter();
+    public static AngleMove anglemove = new AngleMove();
+
     public static final GameController operatorController = GameController.from(
         ControlScheme.OPERATOR_CONTROLLER_TYPE,
         ControlScheme.OPERATOR_CONTROLLER_PORT
