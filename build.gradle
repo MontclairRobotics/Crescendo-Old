@@ -68,6 +68,7 @@ dependencies {
     simulationRelease wpi.sim.enableRelease()
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+    // TODO: Possible cause of build.gradle error, check pull request #2 for details.
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
