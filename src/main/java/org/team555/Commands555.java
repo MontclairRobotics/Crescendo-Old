@@ -29,16 +29,16 @@ public class Commands555
         return Commands.runOnce(Crescendo.fliptop::backward, Crescendo.fliptop).withName("fliptop backward");
     }
 
-    // ANGLEMOVE COMMANDS
+    // SPROCKET COMMANDS
 
     public static Command goUp() {
-        return Commands.runOnce(Crescendo.anglemove::goUp).withName("anglemove up");
+        return Commands.runOnce(Crescendo.sprocket::goUp).withName("sprocket up");
     }
     public static Command goDown() {
-        return Commands.runOnce(Crescendo.anglemove::goDown).withName("anglemove down");
+        return Commands.runOnce(Crescendo.sprocket::goDown).withName("sprocket down");
     }
     public static Command stopAngleMove() {
-        return Commands.runOnce(Crescendo.anglemove::stop).withName("anglemove stop");
+        return Commands.runOnce(Crescendo.sprocket::stop).withName("sprocket stop");
     }
     
 

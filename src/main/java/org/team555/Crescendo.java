@@ -15,7 +15,7 @@ public class Crescendo extends RobotContainer
     public static Intake mouth = new Intake();
     public static Fliptop fliptop = new Fliptop();
     public static Shooter shooter = new Shooter();
-    public static AngleMove anglemove = new AngleMove();
+    public static Sprocket sprocket = new Sprocket();
 
     public static final GameController operatorController = GameController.from(
         ControlScheme.OPERATOR_CONTROLLER_TYPE,
