@@ -116,7 +116,7 @@ public class Drivetrain extends ManagerSubsystemBase {
     }
 
     public Rotation2d getRobotRotation() {
-        return Crescendo.gyroscope.getRotation2d(); // TODO: getRotation2d may have to be rewritten.
+        return Crescendo.gyroscope.getRotation2d(); // TODO: getRotation2d may have to be rewritten
     }
 
     public ChassisSpeeds getSpeedsFromMode(double omega, double x, double y) {
