@@ -4,24 +4,21 @@
 
 package org.team555;
 
+import org.team555.components.managers.GyroscopeNavX;
 import org.team555.components.subsystems.*;
 import org.team555.constants.ControlScheme;
 import org.team555.util.frc.GameController;
-import org.team555.util.frc.GameController.*;
 import org.team555.util.frc.commandrobot.RobotContainer;
-import org.team555.components.managers.GyroscopeNavX;
-import org.team555.components.subsystems.Drivetrain;
-import org.team555.constants.ControlScheme;
-import org.team555.util.frc.GameController;
+import org.team555.util.frc.GameController.Axis;
+import org.team555.util.frc.GameController.Button;
+import org.team555.util.frc.GameController.DPad;
 
-public class Crescendo extends RobotContainer 
-{
+public class Crescendo extends RobotContainer {
     // SUBSYSTEMS
     public static Intake mouth = new Intake();
     public static Fliptop fliptop = new Fliptop();
     public static Shooter shooter = new Shooter();
     public static Sprocket sprocket = new Sprocket();
-
 
     public static final Drivetrain drivetrain = new Drivetrain();
     public static final GyroscopeNavX gyroscope = new GyroscopeNavX();
@@ -34,10 +31,10 @@ public class Crescendo extends RobotContainer
         ControlScheme.DRIVER_CONTROLLER_TYPE, 
         ControlScheme.DRIVER_CONTROLLER_PORT
     );
-    
+
     @Override
     public void initialize() {
-        
+       
         // drivetrain.setDefaultCommand(); // TODO why is there no default method supplied for this function? - rechs
         // SHOOTER BINDINGS
         operatorController.getButton(Button.A_CROSS).onTrue(Commands555.shoot());
@@ -59,12 +56,6 @@ public class Crescendo extends RobotContainer
         // FLIPTOP BINDINGS
         operatorController.getButton(Button.Y_TRIANGLE).onTrue(Commands555.goDown());
         operatorController.getButton(Button.B_CIRCLE).onTrue(Commands555.goUp());
-
-
-        
-    }   
-
-
-
+    }
     
 }

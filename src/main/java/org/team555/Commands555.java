@@ -46,10 +46,13 @@ public class Commands555
     // SHOOTER COMMANDS
 
     public static Command shoot() {
-        return Commands.runOnce(Crescendo.shooter::shoot, Crescendo.shooter).withName("shoot");
+        return Commands.runOnce(Crescendo.shooter::shoot, Crescendo.shooter).withName("shooter shoot");
     }
     
     public static Command stopShooter() {
-        return Commands.runOnce(Crescendo.shooter::stop, Crescendo.shooter).withName("stop");
+        return Commands.runOnce(Crescendo.shooter::stop, Crescendo.shooter).withName("shooter stop");
+    }
+    public static Command reverseShooter() {
+        return Commands.runOnce(Crescendo.shooter::reverseShooter, Crescendo.shooter).withName("shooter reverse");
     }
 }
