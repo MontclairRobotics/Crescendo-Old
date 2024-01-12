@@ -116,7 +116,7 @@ public class Drivetrain extends ManagerSubsystemBase {
     }
 
     public Rotation2d getRobotRotation() {
-        return Rotation2d.fromDegrees(Crescendo.gyroscope.getYaw()); // TODO THIS IS PROBABLY WRONG, refer to declaraton of getYaw in GyroscopeNavX.java - rechs
+        return Crescendo.gyroscope.getRotation2d(); // TODO: getRotation2d may have to be rewritten.
     }
 
     public ChassisSpeeds getSpeedsFromMode(double omega, double x, double y) {

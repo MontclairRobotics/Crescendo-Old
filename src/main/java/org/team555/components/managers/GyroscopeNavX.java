@@ -54,7 +54,7 @@ public class GyroscopeNavX extends ManagerBase
 
     public double getPitch() {return navx.getPitch() - 1.7;} // TODO Is this offset still correct?
     public double getRoll()  {return navx.getRoll();}
-    public double getYaw() {return navx.getYaw();} // TODO This method was missing so I added it. Possible it's incorrect. - Rechs
+    
     LinearFilter avg = LinearFilter.movingAverage(20);
     double rollRate = 0;
 

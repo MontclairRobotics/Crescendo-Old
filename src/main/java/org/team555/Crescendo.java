@@ -37,8 +37,8 @@ public class Crescendo extends RobotContainer
     
     @Override
     public void initialize() {
-
-        drivetrain.setDefaultCommand(); // TODO why is there no default method supplied for this function? - rechs
+        //commands.run that (if driver station is teleop, ) if isnt teleop, set speeds to 000. if not auto, call set input with controller input
+        // drivetrain.setDefaultCommand(); // TODO why is there no default method supplied for this function? - rechs
         // SHOOTER BINDINGS
         operatorController.getButton(Button.A_CROSS).onTrue(Commands555.shoot());
         operatorController.getButton(Button.X_SQUARE).onTrue(Commands555.stopShooter());
