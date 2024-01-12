@@ -46,7 +46,7 @@ public class Crescendo extends RobotContainer
         // INTAKE BINDINGS
         operatorController.getAxis(Axis.RIGHT_TRIGGER)
         .whenGreaterThan(0.5).onTrue(Commands555.barf())
-        .onFalse(Commands555.eat());
+        .onFalse(Commands555.stopIntake());
 
         operatorController.getAxis(Axis.LEFT_TRIGGER)
         .whenGreaterThan(0.5).onTrue(Commands555.eat())

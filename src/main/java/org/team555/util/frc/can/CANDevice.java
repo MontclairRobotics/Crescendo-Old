@@ -3,7 +3,7 @@ package org.team555.util.frc.can;
 import java.util.function.Function;
 import java.util.function.IntSupplier;
 import java.util.function.Supplier;
-
+//TODO: A lot of this has been deprecated.
 import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.Faults;
 import com.ctre.phoenix.motorcontrol.StickyFaults;
@@ -15,6 +15,8 @@ import com.revrobotics.REVLibError;
 import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PneumaticsBase;
 import edu.wpi.first.wpilibj.PneumaticsControlModule;
+
+
 
 public interface CANDevice 
 {
