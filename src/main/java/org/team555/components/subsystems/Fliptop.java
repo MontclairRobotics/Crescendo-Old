@@ -15,12 +15,12 @@ public class Fliptop extends ManagerSubsystemBase {
         motor.setInverted(false);
     }
     
-    //Move fliptop forwards
+    // Move fliptop forwards
     public void forward() {
         motor.set(Constants.FLIPTOP_SPEED);
     }
     
-    //Move fliptop backwards
+    // Move fliptop backwards
     public void backward() {
         motor.set(-Constants.FLIPTOP_SPEED);
     }

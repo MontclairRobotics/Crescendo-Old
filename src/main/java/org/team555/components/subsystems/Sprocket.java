@@ -13,15 +13,15 @@ public class Sprocket extends ManagerSubsystemBase {
     public Sprocket() {
         motor.setInverted(false);
     }
-    
+    // Move sprocket up
     public void goUp() {
         motor.set(Constants.ANGLE_MOVE_SPEED);
     }
-
+    // Move sprocket down
     public void goDown() {
         motor.set(-Constants.ANGLE_MOVE_SPEED);
     }
-
+    // Stop sprocket
     public void stop() {
         motor.set(0);
     }

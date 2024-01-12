@@ -12,15 +12,19 @@
     - (simple) Ternary operators are allowed (no nesting, etc)
     - When calling methods with several parameters, wrap each parameter to a new line.
         - Exception for extremely short method calls
+    
 - OOP
     - Private unless explicity necessary.
 - Comments
     - Comments should be on an otherwise empty line
+        - Exception if it breaks the consistency of the function / block
     - Use TODOs for uncompleted or buggy code
+    - Start each comment with a space
 - Misc
     - Imports
         - Should be at the very start of the file
         - Imports referencing internal code should be closer to the start
     - Commands with the .withName() method should mention the subsystem then the action
         - Examples: "Shooter Stop" "Intake In"
+    - Newline between functions
 

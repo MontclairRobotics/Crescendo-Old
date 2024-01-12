@@ -24,11 +24,12 @@ public class Shooter extends ManagerSubsystemBase {
         motor2.set(Constants.EJECT_SPEED);
     }
 
-    //stop shooting
+    // stop shooting
     public void stop(){
         motor1.set(0);
         motor2.set(0);
     }
+    // reverse shooter, in case shooter jams, etc.
     public void reverseShooter() {
         motor1.set(-Constants.EJECT_SPEED);
         motor2.set(-Constants.EJECT_SPEED);

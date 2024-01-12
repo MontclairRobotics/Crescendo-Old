@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj2.command.Commands;
 public class Commands555 
 {   
     // INTAKE COMMANDS
-
     public static Command eat() {
         return Commands.runOnce(Crescendo.mouth::in, Crescendo.mouth).withName("intake in");
     }
@@ -20,7 +19,6 @@ public class Commands555
     }
 
     // FLIPTOP COMMANDS
-
     public static Command foward() {
         return Commands.runOnce(Crescendo.fliptop::forward, Crescendo.fliptop).withName("fliptop forward");
     }
@@ -30,7 +28,6 @@ public class Commands555
     }
 
     // SPROCKET COMMANDS
-
     public static Command goUp() {
         return Commands.runOnce(Crescendo.sprocket::goUp).withName("sprocket up");
     }
@@ -41,10 +38,7 @@ public class Commands555
         return Commands.runOnce(Crescendo.sprocket::stop).withName("sprocket stop");
     }
     
-    
-
     // SHOOTER COMMANDS
-
     public static Command shoot() {
         return Commands.runOnce(Crescendo.shooter::shoot, Crescendo.shooter).withName("shooter shoot");
     }
