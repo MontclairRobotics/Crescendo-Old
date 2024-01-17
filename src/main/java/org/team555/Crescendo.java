@@ -7,8 +7,13 @@ package org.team555;
 import org.team555.components.managers.GyroscopeNavX;
 import org.team555.components.subsystems.*;
 import org.team555.constants.ControlScheme;
+import org.team555.inputs.JoystickInput;
 import org.team555.util.frc.GameController;
 import org.team555.util.frc.commandrobot.RobotContainer;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj2.command.Commands;
+
 import org.team555.util.frc.GameController.Axis;
 import org.team555.util.frc.GameController.Button;
 import org.team555.util.frc.GameController.DPad;
@@ -35,7 +40,20 @@ public class Crescendo extends RobotContainer {
     @Override
     public void initialize() {
        
-        // drivetrain.setDefaultCommand(); TODO why is there no default method supplied for this function? - rechs
+        drivetrain.setDefaultCommand(Commands.run(() -> {
+            if (!DriverStation.isTeleop()) 
+                {
+                    drivetrain.setChassisSpeeds(0, 0, 0);
+                    return;
+                }
+
+                drivetrain.setInput(
+                    JoystickInput.getRight(driverController, false, true), //TODO do these inverts need to be set to true or false? Last year x was set to true for both remotes
+                    JoystickInput.getLeft(driverController, false, true)
+                );
+        })); //TODO why is there no default method supplied for this function? - rechs
+
+        
         // SHOOTER BINDINGS
         operatorController.getButton(Button.A_CROSS).onTrue(Commands555.shoot());
         operatorController.getButton(Button.X_SQUARE).onTrue(Commands555.stopShooter());
