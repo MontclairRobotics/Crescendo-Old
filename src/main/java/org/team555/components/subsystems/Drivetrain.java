@@ -17,6 +17,7 @@ import com.swervedrivespecialties.swervelib.SwerveModule;
 
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -25,7 +26,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
 
-// TODO: pretty much all of this code was reconstructed from fragments in a branch, completely possible I messed an import up or something of the sort. - Rechs
+
 public class Drivetrain extends ManagerSubsystemBase {
 
 
@@ -41,14 +42,26 @@ public class Drivetrain extends ManagerSubsystemBase {
 
     private boolean useFieldRelative;
 
+    private final SwerveDrivePoseEstimator poseEstimator;
+
     public boolean useFieldCentric = true;
 
     public Drivetrain() {
         modules = new SwerveModule[4];
 
+        poseEstimator = new SwerveDrivePoseEstimator(
+            DriveConstants.KINEMATICS, 
+            getRobotRotation(),
+            getModulePositions(),
+            new Pose2d()
+        );
+
+
         Pose2d[] modPoses = new Pose2d[4];
 
         for (int i = 0; i < 4; i++) {
+            modules[i] = DriveConstants.MODULES[i].build();
+
             modPoses[i] = new Pose2d(DriveConstants.MOD_POSITIONS[i], new Rotation2d());
             CANSparkMax motor = (CANSparkMax) modules[i].getSteerMotor();
             motor.burnFlash();
@@ -124,6 +137,17 @@ public class Drivetrain extends ManagerSubsystemBase {
         return new ChassisSpeeds(x, y, omega);
     }
 
+    /**
+    * Get the rotation of the robot within the unit circle.
+    */
+    public Rotation2d getRobotRotationInCircle() {
+        return Rotation2d.fromRadians(getRobotRotation().getRadians() % (2*Math.PI));
+    }
+
+    public Pose2d getRobotPose() {
+        return poseEstimator.getEstimatedPosition();
+    }
+
     public void setInput(JoystickInput turn, JoystickInput drive) {
         ControlScheme.TURN_ADJUSTER.adjustX(turn);
         ControlScheme.DRIVE_ADJUSTER.adjustMagnitude(drive);
@@ -154,6 +178,7 @@ public class Drivetrain extends ManagerSubsystemBase {
     }
 
     private void driveFromStates(SwerveModuleState[] states) {
+
         SwerveDriveKinematics.desaturateWheelSpeeds(states, DriveConstants.MAX_SPEED_MPS);
 
         for(int i = 0; i < 4; i++) {
@@ -168,6 +193,8 @@ public class Drivetrain extends ManagerSubsystemBase {
                 states[i].angle.getRadians()
             );
         }
+
+        poseEstimator.update(getRobotRotation(), getModulePositions());
     }
 
     public SwerveModulePosition[] getModulePositions() {
@@ -178,6 +205,28 @@ public class Drivetrain extends ManagerSubsystemBase {
 
     @Override
     public void always() {
+        
+       
+        xPID.setMeasurement(getRobotPose().getX());
+        yPID.setMeasurement(getRobotPose().getY());
+        thetaPID.setMeasurement(getRobotRotationInCircle().getRadians());
+
+
+        xPID.update();
+        yPID.update();
+        thetaPID.update();
+
+        double xSpeed = xPID.getSpeed();
+        double ySpeed = yPID.getSpeed();
+        //TODO should we use SlewRateLimiters?
+        double thetaSpeed = thetaPID.getSpeed(); 
+
+        ChassisSpeeds chassisSpeeds = new ChassisSpeeds(xSpeed, ySpeed, thetaSpeed);
+
+        SwerveModuleState[] states = DriveConstants.KINEMATICS.toSwerveModuleStates(chassisSpeeds);
+
+        driveFromStates(states);
+
 
     }
 }
