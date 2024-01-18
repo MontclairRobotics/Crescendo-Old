@@ -3,6 +3,7 @@
   "waypoints": [
     {
       "anchor": {
+<<<<<<< Updated upstream
         "x": 0.5293935837515026,
         "y": 6.979658581285779
       },
@@ -10,6 +11,15 @@
       "nextControl": {
         "x": 2.262597392527166,
         "y": 6.440960100179829
+=======
+        "x": 0.72,
+        "y": 6.72
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.4496343276827206,
+        "y": 6.72
+>>>>>>> Stashed changes
       },
       "isLocked": false,
       "linkedName": null
@@ -28,7 +38,13 @@
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.0,
+      "rotationDegrees": 59.0,
+      "rotateFast": true
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -44,6 +60,9 @@
   },
   "reversed": false,
   "folder": null,
-  "previewStartingState": null,
+  "previewStartingState": {
+    "rotation": 59.5,
+    "velocity": 0
+  },
   "useDefaultConstraints": false
 }
