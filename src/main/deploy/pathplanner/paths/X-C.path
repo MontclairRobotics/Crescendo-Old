@@ -3,44 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-<<<<<<<< HEAD:src/main/deploy/pathplanner/paths/3-X.path
-        "x": 0.72,
-        "y": 6.72
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 2.0123400444296413,
-        "y": 7.336798657568694
-========
         "x": 1.84,
-        "y": 7.62
+        "y": 7.28
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.25295628369716,
-        "y": 7.423522328523405
->>>>>>>> 426a67984a536da9288973782c9344ea8aea7dbc:src/main/deploy/pathplanner/paths/X-C.path
+        "x": 2.2040432097982583,
+        "y": 7.202164475655628
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-<<<<<<<< HEAD:src/main/deploy/pathplanner/paths/3-X.path
-        "x": 1.84,
-        "y": 7.62
+        "x": 2.9,
+        "y": 7.0
       },
       "prevControl": {
-        "x": 0.6210883671856793,
-        "y": 7.0766297540466265
-========
-        "x": 2.907787820212085,
-        "y": 6.986334537481157
-      },
-      "prevControl": {
-        "x": 2.8090909839295235,
-        "y": 7.063356075783493
->>>>>>>> 426a67984a536da9288973782c9344ea8aea7dbc:src/main/deploy/pathplanner/paths/X-C.path
+        "x": 2.4499707772596704,
+        "y": 7.096766946743594
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,9 +30,9 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.45,
+      "waypointRelativePos": 0.1,
       "rotationDegrees": 0,
-      "rotateFast": true
+      "rotateFast": false
     }
   ],
   "constraintZones": [],
@@ -70,11 +51,7 @@
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-<<<<<<<< HEAD:src/main/deploy/pathplanner/paths/3-X.path
-    "rotation": 59.5,
-========
     "rotation": -90.0,
->>>>>>>> 426a67984a536da9288973782c9344ea8aea7dbc:src/main/deploy/pathplanner/paths/X-C.path
     "velocity": 0
   },
   "useDefaultConstraints": false

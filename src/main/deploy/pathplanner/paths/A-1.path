@@ -8,13 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-<<<<<<< Updated upstream
-        "x": 1.2121054967384666,
-        "y": 4.281489666459187
-=======
-        "x": 2.590305972919639,
-        "y": 4.095720975324735
->>>>>>> Stashed changes
+        "x": 1.9112722961537205,
+        "y": 4.180768646843998
       },
       "isLocked": false,
       "linkedName": null
@@ -25,21 +20,15 @@
         "y": 4.38
       },
       "prevControl": {
-        "x": 0.7185213820977098,
-        "y": 4.3695286383246765
+        "x": 1.3491521419562087,
+        "y": 4.239322829572906
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 1.0,
-      "rotationDegrees": 0,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -50,7 +39,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -59.10000000000002,
+    "rotation": -59.5,
     "rotateFast": false
   },
   "reversed": false,
