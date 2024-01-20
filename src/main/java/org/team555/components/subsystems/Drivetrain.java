@@ -234,7 +234,7 @@ public class Drivetrain extends ManagerSubsystemBase {
 
     }
     // Return true if path should be mirrored for the red alliance
-    public static boolean shouldFlipSide() {
+    public boolean shouldFlipSide() {
         Optional<DriverStation.Alliance> alliance = DriverStation.getAlliance();
         if (alliance.isPresent()) {
             return alliance.get() == DriverStation.Alliance.Red;

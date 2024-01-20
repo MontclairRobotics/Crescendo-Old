@@ -24,7 +24,7 @@ public class Auto { // :)
                 -1.0, //TODO: We need to measure the drivebase radius (center to furthest swerve module)
                 new ReplanningConfig()
             ), 
-            Drivetrain.shouldFlipSide(), 
+            Crescendo.drivetrain::shouldFlipSide, 
             Crescendo.drivetrain)
         ;
     }
