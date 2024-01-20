@@ -28,7 +28,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 // TODO: pretty much all of this code was reconstructed from fragments in a branch, completely possible I messed an import up or something of the sort. - Rechs
 public class Drivetrain extends ManagerSubsystemBase {
 
-
     private final SwerveModule[] modules;
 
     // private final SlewRateLimiter xLimiter;
@@ -83,7 +82,7 @@ public class Drivetrain extends ManagerSubsystemBase {
         );
 
         thetaController.setTolerance(Math.toRadians(1.5), Math.toRadians(0.5));
-        thetaController.enableContinuousInput(0, 2*Math.PI);
+        thetaController.enableContinuousInput(0, 2 * Math.PI);
 
         DriveConstants.PosPID.KP.whenUpdate(xController::setP).whenUpdate(yController::setP);
         DriveConstants.PosPID.KI.whenUpdate(xController::setI).whenUpdate(yController::setI);
@@ -116,7 +115,8 @@ public class Drivetrain extends ManagerSubsystemBase {
     }
 
     public Rotation2d getRobotRotation() {
-        return Crescendo.gyroscope.getRotation2d(); // TODO: getRotation2d may have to be rewritten
+         // TODO: getRotation2d may have to be rewritten
+        return Crescendo.gyroscope.getRotation2d();
     }
 
     public ChassisSpeeds getSpeedsFromMode(double omega, double x, double y) {
