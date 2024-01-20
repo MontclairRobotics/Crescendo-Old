@@ -22,10 +22,10 @@ public class Ports {
     ;
 
     public static final int 
-        STEER_FL_PORT = -1,
-        STEER_FR_PORT = -1,
-        STEER_BL_PORT = -1,
-        STEER_BR_PORT = -1
+        STEER_FL_PORT = 1,
+        STEER_FR_PORT = 2,
+        STEER_BL_PORT = 3,
+        STEER_BR_PORT = 4
     ;
 
     // CANCODERS 
