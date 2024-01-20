@@ -1,6 +1,8 @@
 package org.team555.components.subsystems;
 
 import java.util.Arrays;
+import java.util.Optional;
+
 import org.team555.constants.ControlScheme;
 import org.team555.constants.DriveConstants;
 import org.team555.constants.DriveConstants.ThetaPID;
@@ -24,6 +26,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.DriverStation;
 
 
 
@@ -41,7 +44,8 @@ public class Drivetrain extends ManagerSubsystemBase {
 
     private boolean useFieldRelative;
 
-    private final SwerveDrivePoseEstimator poseEstimator;
+    // used in Auto.java
+    public final SwerveDrivePoseEstimator poseEstimator;
 
     public boolean useFieldCentric = true;
 
@@ -228,5 +232,28 @@ public class Drivetrain extends ManagerSubsystemBase {
         driveFromStates(states);
 
 
+    }
+    // Return true if path should be mirrored for the red alliance
+    public static boolean shouldFlipSide() {
+        Optional<DriverStation.Alliance> alliance = DriverStation.getAlliance();
+        if (alliance.isPresent()) {
+            return alliance.get() == DriverStation.Alliance.Red;
+        } else {
+            return false;
+        }
+    }
+
+    public ChassisSpeeds getRobotRelativeSpeeds() {
+
+    }
+    public void setRobotPose(Pose2d pose)
+    {
+        poseEstimator.resetPosition(
+            getRobotRotation(),
+            getModulePositions(),
+            pose
+        );
+
+        // Crescendo.vision.resetPose(pose); //TODO add this after vision
     }
 }
