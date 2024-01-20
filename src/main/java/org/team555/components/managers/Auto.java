@@ -14,14 +14,14 @@ public class Auto { // :)
 
         AutoBuilder.configureHolonomic(
             Crescendo.drivetrain::getRobotPose, 
-            Crescendo.drivetrain.poseEstimator::resetPosition, 
-            null, 
-            null, 
+            Crescendo.drivetrain::setRobotPose, // TODO: setRobotPose needs to be finished
+            Crescendo.drivetrain::getRobotRelativeSpeeds, 
+            Crescendo.drivetrain::driveRobotRelative, 
             new HolonomicPathFollowerConfig(
                 DriveConstants.PosPID.consts(),
                 DriveConstants.ThetaPID.autoconsts(),
                 DriveConstants.MAX_SPEED_MPS,
-                -1.0, //TODO: We need to measure the drivebase radius (center to furthest swerve module)
+                -1.0, // TODO: We need to measure the drivebase radius (center to furthest swerve module)
                 new ReplanningConfig()
             ), 
             Crescendo.drivetrain::shouldFlipSide, 

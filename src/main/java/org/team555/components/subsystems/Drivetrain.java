@@ -10,6 +10,7 @@ import org.team555.inputs.JoystickInput;
 import org.team555.math.Math555;
 import org.team555.util.frc.Logging;
 import org.team555.util.frc.PIDMechanism;
+import org.team555.util.frc.SwerveModuleSpec;
 import org.team555.util.frc.Tunable;
 import org.team555.util.frc.commandrobot.ManagerSubsystemBase;
 import org.team555.Crescendo;
@@ -23,6 +24,7 @@ import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.Kinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
@@ -244,7 +246,12 @@ public class Drivetrain extends ManagerSubsystemBase {
     }
 
     public ChassisSpeeds getRobotRelativeSpeeds() {
+        double xSpeed = xPID.getSpeed();
+        double ySpeed = yPID.getSpeed();
+        double thetaSpeed = thetaPID.getSpeed(); 
 
+        return new ChassisSpeeds(xSpeed, ySpeed, thetaSpeed);
+        
     }
     public void setRobotPose(Pose2d pose)
     {
@@ -255,5 +262,11 @@ public class Drivetrain extends ManagerSubsystemBase {
         );
 
         // Crescendo.vision.resetPose(pose); //TODO add this after vision
+    }
+
+    /* Outputs commands to the robot's drive motors given robot-relative ChassisSpeeds. 
+    This can be converted to module states or wheel speeds using WPILib's drive kinematics classes. */
+    public void driveRobotRelative(ChassisSpeeds speeds) {
+        setChassisSpeeds(speeds);
     }
 }
