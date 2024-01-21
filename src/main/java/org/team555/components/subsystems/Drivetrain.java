@@ -246,9 +246,9 @@ public class Drivetrain extends ManagerSubsystemBase {
     }
 
     public ChassisSpeeds getRobotRelativeSpeeds() {
-        double xSpeed = xPID.getSpeed();
-        double ySpeed = yPID.getSpeed();
-        double thetaSpeed = thetaPID.getSpeed(); 
+        double xSpeed = xPID.getSpeed() * DriveConstants.MAX_SPEED_MPS;
+        double ySpeed = yPID.getSpeed() * DriveConstants.MAX_SPEED_MPS;
+        double thetaSpeed = thetaPID.getSpeed() * DriveConstants.MAX_TURN_SPEED_RAD_PER_S; 
 
         return new ChassisSpeeds(xSpeed, ySpeed, thetaSpeed);
         
@@ -264,9 +264,5 @@ public class Drivetrain extends ManagerSubsystemBase {
         // Crescendo.vision.resetPose(pose); //TODO add this after vision
     }
 
-    /* Outputs commands to the robot's drive motors given robot-relative ChassisSpeeds. 
-    This can be converted to module states or wheel speeds using WPILib's drive kinematics classes. */
-    public void driveRobotRelative(ChassisSpeeds speeds) {
-        setChassisSpeeds(speeds);
-    }
+    
 }

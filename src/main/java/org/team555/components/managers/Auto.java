@@ -8,15 +8,15 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.ReplanningConfig;
 
-public class Auto { // :)
+public class Auto { 
 
     public Auto() {
 
         AutoBuilder.configureHolonomic(
             Crescendo.drivetrain::getRobotPose, 
-            Crescendo.drivetrain::setRobotPose, // TODO: setRobotPose needs to be finished
+            Crescendo.drivetrain::setRobotPose, 
             Crescendo.drivetrain::getRobotRelativeSpeeds, 
-            Crescendo.drivetrain::driveRobotRelative, 
+            Crescendo.drivetrain::setChassisSpeeds, 
             new HolonomicPathFollowerConfig(
                 DriveConstants.PosPID.consts(),
                 DriveConstants.ThetaPID.autoconsts(),
