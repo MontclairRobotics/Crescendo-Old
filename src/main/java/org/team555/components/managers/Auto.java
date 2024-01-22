@@ -9,7 +9,7 @@ import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.ReplanningConfig;
 
-import edu.wpi.first.wbilibj.shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -48,7 +48,7 @@ public class Auto {
      * @return the command to follow the path it just got.
      */
     public Command getPath(String filePath) {
-        PathPlannerPath path = new PathPlannerPath.fromPathFile(filePath);
+        PathPlannerPath path = PathPlannerPath.fromPathFile(filePath); 
 
         return AutoBuilder.followPath(path);
     }
