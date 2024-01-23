@@ -27,9 +27,9 @@ public class Limelight {
 
     }
 
-    public double hasValidTarget() {
-        // Debouncer 
-    }
+    // public double hasValidTarget() {
+    //     // Debouncer 
+    // }
 
     // public boolean currentPipelineMatches(DetectionType ty)
     // {
@@ -46,11 +46,13 @@ public class Limelight {
     public boolean currentPipelineMatches(DetectionType type) 
     {
         int newCamMode = 0;
+
         if (type == DetectionType.DRIVER) {
-            LimelightHelpers.setLimelightNTDouble(cameraName,"camMode",1);
+            newCamMode = 1;
         }
+        
         LimelightHelpers.setLimelightNTDouble(cameraName, "camMode", newCamMode);
-        int currentPipe = (int) LimelightHelpers.getCurrentPipelineIndex("limelight");
+        int currentPipe = (int) LimelightHelpers.getCurrentPipelineIndex(cameraName);
     
         return type.getPipe() == currentPipe;
 
