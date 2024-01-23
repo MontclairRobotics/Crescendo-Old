@@ -1,7 +1,7 @@
 package org.team555.vision;
 
 public enum DetectionType {
-    NONE(-1),
+    DRIVER(-1),
     NOTE(0),
     APRIL_TAG(1);
 
