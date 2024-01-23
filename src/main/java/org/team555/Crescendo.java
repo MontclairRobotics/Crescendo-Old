@@ -25,9 +25,8 @@ public class Crescendo extends RobotContainer {
     public static Shooter shooter = new Shooter();
     public static Sprocket sprocket = new Sprocket();
 
-    public static final Drivetrain drivetrain = new Drivetrain();
     public static final GyroscopeNavX gyroscope = new GyroscopeNavX();
-
+    public static final Drivetrain drivetrain = new Drivetrain();
     public static final GameController operatorController = GameController.from(
         ControlScheme.OPERATOR_CONTROLLER_TYPE,
         ControlScheme.OPERATOR_CONTROLLER_PORT
