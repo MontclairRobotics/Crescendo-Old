@@ -2,12 +2,13 @@ package org.team555.vision;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.filter.Debouncer;
+import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.Timer;
 
 public class Limelight {
     private String cameraName;
     private DetectionType targeting;
-    private Debouncer targetDebouncer;
+    private Debouncer targetDebouncer = new Debouncer(0.1, DebounceType.kFalling);
     
     public Limelight(String cameraName, DetectionType initialType) {
  
@@ -17,8 +18,8 @@ public class Limelight {
 
         this.cameraName = cameraName;
         this.targeting = initialType;
-        
 
+        
     }
     
     public double getTimestampSeconds() {
@@ -27,37 +28,29 @@ public class Limelight {
 
     }
 
-    // public double hasValidTarget() {
-    //     // Debouncer 
-    // }
-
-    // public boolean currentPipelineMatches(DetectionType ty)
-    // {
-    //     if(ty == DetectionType.DEFAULT) return currentPipelineMatches(getDefaultInternal());
-
-    //     int pipe = (int) getPipeline();
-
-    //     if     (ty == DetectionType.CUBE || ty == DetectionType.CONE) return (pipe == CONE_CUBE_PIPE);
-    //     else if(ty == DetectionType.TAPE                            ) return (pipe == TAPE_RETRO_PIPE);
-    //     else if(ty == DetectionType.APRIL_TAG                       ) return (pipe == APRIL_TAG_PIPE);
-
-    //     else return false;
-    // }
-    public boolean currentPipelineMatches(DetectionType type) 
-    {
-        int newCamMode = 0;
-
-        if (type == DetectionType.DRIVER) {
-            newCamMode = 1;
-        }
-        
-        LimelightHelpers.setLimelightNTDouble(cameraName, "camMode", newCamMode);
-        int currentPipe = (int) LimelightHelpers.getCurrentPipelineIndex(cameraName);
-    
-        return type.getPipe() == currentPipe;
-
+    public boolean hasValidTarget() {
+        boolean hasMatch = (LimelightHelpers.getLimelightNTDouble(cameraName, "tv") == 1.0);
+        return targetDebouncer.calculate(hasMatch);
     }
 
+    public boolean currentPipelineMatches(DetectionType type) {
+
+        int pipeline = (int) LimelightHelpers.getCurrentPipelineIndex(cameraName);
+        return type.getPipe() == pipeline;
+        
+    }
+    
+    private void setPipelineTo(DetectionType type) {
+        if (type == DetectionType.DRIVER) {
+            LimelightHelpers.setCameraMode_Driver(cameraName);
+        } else {
+            LimelightHelpers.setCameraMode_Processor(cameraName);
+        }
+        
+        LimelightHelpers.setPipelineIndex(cameraName, type.getPipe());
+    }
+
+    
 
 
 }
