@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Limelight {
     private String cameraName;
-    private DetectionType targeting;
     private Debouncer targetDebouncer = new Debouncer(0.1, DebounceType.kFalling);
     
     public Limelight(String cameraName, DetectionType initialType) {
@@ -17,7 +16,7 @@ public class Limelight {
         // TODO: Networktables boilerplate?
 
         this.cameraName = cameraName;
-        this.targeting = initialType;
+    
 
         
     }
