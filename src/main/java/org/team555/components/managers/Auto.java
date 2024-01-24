@@ -124,28 +124,85 @@ public class Auto {
         return AutoBuilder.followPath(path);
     }
 
-    private String getAutoString(String start, boolean pickupOnce, boolean scoreSpeakerTwice, boolean pickupTwice, boolean scoreAmp, boolean pickupNearOnly, boolean pickupFarOnly) {
+    private String getAutoString(String start, boolean shootSpeakerFirst, boolean pickupOnce, boolean scoreSpeakerTwice, boolean pickupTwice, boolean scoreAmp, boolean pickupNearFirst, bool boolean pickFirst, boolean pickupFarSecond, boolean pickupNearSecondupFarFirst) {
         String str = "";
+
+        //Pointmap connects starting locations to their corresponding nearest note locations (not on middle line)
+        //Pointmap connects starting locations to their corresponding nearest note locations (in the middle)
         HashMap<String, String> pointMap = new HashMap<String, String>();
         pointMap.put("1", "AD");
         pointMap.put("2", "BG");
-        pointMap.put("3,", "CH");
+        pointMap.put("3", "CH");
 
+        String speakerShootLocation = "S";
+        String ampShootLocation = "X";
+
+        
+        //List of all booleans in getAutoString
+        //pickupOnce
+        //pickupTwice
+        //scoreSpeakerTwice
+        //scoreAmp
+        //pickupNear
+        //pickupFar
+        
+        //error if no start number
         if(start == null) {
             Logging.errorNoTrace("Invalid start position for auto path");
             return null;
         }
-        str += "" + pointMap.get(start).charAt(0);
+
+        //add start number to the auto string
+        str += "" +  start;
+
+        //adds what shooting location we are going to first
+        if(shootSpeakerFirst) str += speakerShootLocation   ;
+        else str += ampShootLocation;
 
         //Go to the nearest near pickup point if pickup near only, probably used if an alliance member can't ground pickup
-        if(pickupOnce && pickupNearOnly) str += pointMap.get(start);
+        if(pickupOnce) {
+            //if we are only picking up the near note
+            if (pickupNearFirst)st) {
+            str += pointMap.get(start).charAt(0);
+                //if we are shooting at amp with our second shot
+                if(scoreAmp){
+                    str += ampShootLocation;
+                }
+                //if we are shooting at speaker with out second shot
+                if(shootSpeakerFirst && scoreSpeakerTwice){
+                    str += speakerShootLocation;
+                }
+                else str += speakerShootLocation;
+            }
+            //if we are only pickup the far note
+            else if (pickupFarFirst) {
+                //if we are shooting at amp with our second shot
+                if(scoreAmp){
+                    str += ampShootLocation;
+                }
+                //if we are shooting at speaker with out second shot
+                if(shootSpeakerFirst && scoreSpeakerTwice){
+                    str += speakerShootLocation;
+                }
+                //if we are shooting speaker next but we shot at amp first
+                else str += speakerShootLocation;
+            }
+        } else if (pickupTwice){
+            if (scoreSpeakerTwice){
+                //second pick up location
+                str += speakerShootLocation;
+            }
+            
+        }
         //Go to the nearest far pickup point
-        else str += "" + pointMap.get(start).charAt(1);
-
-        //this assumes that you always score in the same position you start in
-        str += start;
-
+        else {
+            str += "" + pointMap.get(start).charAt(1);
+        }
         
+        //Go to the farthest near pickup point if pickup far only,
+ o       if(pickupTwice && scoreSpeakerTwice) str += pointMap.get(start).charAt(1);
+         //where do we do the second start?
 
+        return str;
     }
 }
