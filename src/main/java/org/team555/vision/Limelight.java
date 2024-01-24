@@ -4,12 +4,12 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.Timer;
-
+import org.team555.constants.VisionConstants;
 public class Limelight {
     private String cameraName;
-    private Debouncer targetDebouncer = new Debouncer(0.1, DebounceType.kFalling);
+    private Debouncer targetDebouncer = new Debouncer(VisionConstants.TARGET_DEBOUNCE_TIME, DebounceType.kFalling);
     
-    public Limelight(String cameraName, DetectionType initialType) {
+    public Limelight(String cameraName) {
  
         double[] camerapose_robotspace = new double[] {-1, -1, -1, 0.0, 0.0, 0.0};
         LimelightHelpers.setLimelightNTDoubleArray(cameraName,"camerapose_robotspace", camerapose_robotspace);
@@ -35,7 +35,7 @@ public class Limelight {
 
     }
     
-    private void setPipelineTo(DetectionType type) {
+    public void setPipelineTo(DetectionType type) {
         if (type == DetectionType.DRIVER) {
             LimelightHelpers.setCameraMode_Driver(cameraName);
         } else {

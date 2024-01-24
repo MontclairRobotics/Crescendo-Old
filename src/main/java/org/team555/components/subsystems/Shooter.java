@@ -6,6 +6,7 @@ import org.team555.util.frc.commandrobot.ManagerSubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+// Drive by scoring angle calculation is: arctan(height/distance);
 
 public class Shooter extends ManagerSubsystemBase {
 
