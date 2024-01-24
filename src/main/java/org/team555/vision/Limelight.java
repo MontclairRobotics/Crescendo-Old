@@ -16,15 +16,11 @@ public class Limelight {
         // TODO: Networktables boilerplate?
 
         this.cameraName = cameraName;
-    
-
-        
     }
     
     public double getTimestampSeconds() {
         double latency = (LimelightHelpers.getLimelightNTDouble(cameraName, "cl") + LimelightHelpers.getLimelightNTDouble(cameraName, "tl")) / 1000.0;
         return Timer.getFPGATimestamp() - latency;
-
     }
 
     public boolean hasValidTarget() {
@@ -36,7 +32,7 @@ public class Limelight {
 
         int pipeline = (int) LimelightHelpers.getCurrentPipelineIndex(cameraName);
         return type.getPipe() == pipeline;
-        
+
     }
     
     private void setPipelineTo(DetectionType type) {
@@ -48,8 +44,4 @@ public class Limelight {
         
         LimelightHelpers.setPipelineIndex(cameraName, type.getPipe());
     }
-
-    
-
-
 }
