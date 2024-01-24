@@ -130,13 +130,13 @@ public class DriveConstants {
 
     //TODO Set offsets
 
-    private static final double height = -1;
-    private static final double width = -1;
+    private static final double WHEEL_BASE_HEIGHT = Units.inchesToMeters(23.75);
+    private static final double WHEEL_BASE_WIDTH = Units.inchesToMeters(23.75);
 
-    private static Translation2d FLPosition = new Translation2d(height/2, width/2); //FL
-    private static Translation2d FRPosition = new Translation2d(height/2, -width/2); //FR
-    private static Translation2d BLPosition = new Translation2d(-height/2, width/2); //BL
-    private static Translation2d BRPosition = new Translation2d(-height/2, -width/2); //BR
+    private static Translation2d FLPosition = new Translation2d(WHEEL_BASE_HEIGHT/2, WHEEL_BASE_WIDTH/2); //FL
+    private static Translation2d FRPosition = new Translation2d(WHEEL_BASE_HEIGHT/2, -WHEEL_BASE_WIDTH/2); //FR
+    private static Translation2d BLPosition = new Translation2d(-WHEEL_BASE_HEIGHT/2, WHEEL_BASE_WIDTH/2); //BL
+    private static Translation2d BRPosition = new Translation2d(-WHEEL_BASE_HEIGHT/2, -WHEEL_BASE_WIDTH/2); //BR
     
     public static final Translation2d[] MOD_POSITIONS = {
         FLPosition,
