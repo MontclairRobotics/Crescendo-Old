@@ -29,6 +29,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 
 
 
@@ -54,18 +55,16 @@ public class Drivetrain extends ManagerSubsystemBase {
     public Drivetrain() {
         modules = new SwerveModule[4];
 
-        poseEstimator = new SwerveDrivePoseEstimator(
-            DriveConstants.KINEMATICS, 
-            getRobotRotation(),
-            getModulePositions(),
-            new Pose2d()
-        );
-
 
         Pose2d[] modPoses = new Pose2d[4];
 
         for (int i = 0; i < 4; i++) {
-            modules[i] = DriveConstants.MODULES[i].build();
+            modules[i] = DriveConstants.MODULES[i].build(
+                Crescendo.getDebugTab()
+                .getLayout("Module " + DriveConstants.MODULE_NAMES[i], BuiltInLayouts.kList)
+                    .withSize(2, 3)
+                    .withPosition(2*i, 0)
+            );
 
             modPoses[i] = new Pose2d(DriveConstants.MOD_POSITIONS[i], new Rotation2d());
             CANSparkMax motor = (CANSparkMax) modules[i].getSteerMotor();
@@ -92,6 +91,13 @@ public class Drivetrain extends ManagerSubsystemBase {
             DriveConstants.PosPID.consts().kP,
             DriveConstants.PosPID.consts().kI, 
             DriveConstants.PosPID.consts().kD
+        );
+
+        poseEstimator = new SwerveDrivePoseEstimator(
+            DriveConstants.KINEMATICS, 
+            getRobotRotation(),
+            getModulePositions(),
+            new Pose2d()
         );
 
         PIDController thetaController = new PIDController(
@@ -194,6 +200,9 @@ public class Drivetrain extends ManagerSubsystemBase {
             //     new Rotation2d(modules[i].getSteerAngle())
             // );
 
+            // Logging.info(DriveConstants.MODULE_NAMES[i]);
+            // Logging.info("Speed: " + states[i].speedMetersPerSecond);
+            // Logging.info("Angle: " + states[i].angle.getRadians());
             modules[i].set(
                 states[i].speedMetersPerSecond / DriveConstants.MAX_SPEED_MPS * DriveConstants.MAX_VOLTAGE_V,
                 states[i].angle.getRadians()
